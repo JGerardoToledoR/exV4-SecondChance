@@ -1,0 +1,18 @@
+services:
+  operations:
+    build: ./dis-server
+    image: calculator:latest-v4
+    container_name: servicio_descuentos
+    restart: always
+    ports:
+      - "8080:8080"
+
+  client:
+    build: ./dis-client
+    image: client:latest-v4
+    container_name: cliente_descuentos
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - operations
